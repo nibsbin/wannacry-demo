@@ -98,7 +98,8 @@ Vagrant.configure("2") do |config|
     monitor.vm.box = "kalilinux/rolling"
     monitor.vm.hostname = "monitor"
 
-    monitor.vm.network "private_network", ip: '192.168.24.5', name: "VirtualBox Host-Only Ethernet Adapter #2"
+    monitor.vm.network "private_network", ip: '192.168.24.5', name: "VirtualBox Host-Only Ethernet Adapter #2",
+      virtualbox__intnet: false
 
     monitor.vm.provision "shell", run: "always", inline: <<-SHELL
       nmcli con show "eth1-static" &>/dev/null || \
@@ -109,8 +110,9 @@ Vagrant.configure("2") do |config|
 
     monitor.vm.provider "virtualbox" do |v|
       v.name = "monitor"
-      v.memory = 3000
+      v.memory = 5000
       v.cpus = 2
+      v.customize ["modifyvm", :id, "--nicpromisc2", "allow-all"]
     end
   end
 end
