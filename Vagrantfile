@@ -19,7 +19,7 @@ Vagrant.configure("2") do |config|
 
     kali.vm.provider "virtualbox" do |v|
       v.name = "kali"
-      v.memory = 4096
+      v.memory = 3000
       v.cpus = 2
     end
 
@@ -43,7 +43,7 @@ Vagrant.configure("2") do |config|
 
     win.vm.provider "virtualbox" do |v|
       v.name = "Lt Connoly's PC"
-      v.memory = 4096
+      v.memory = 3000
       v.cpus = 2
     end
 
@@ -76,7 +76,7 @@ Vagrant.configure("2") do |config|
 
     win.vm.provider "virtualbox" do |v|
       v.name = "Capt Dorfner's PC"
-      v.memory = 4096
+      v.memory = 3000
       v.cpus = 2
     end
 
@@ -109,7 +109,7 @@ Vagrant.configure("2") do |config|
 
     monitor.vm.provider "virtualbox" do |v|
       v.name = "monitor"
-      v.memory = 4096
+      v.memory = 3000
       v.cpus = 2
     end
   end
