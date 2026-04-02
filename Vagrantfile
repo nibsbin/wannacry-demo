@@ -8,7 +8,7 @@ Vagrant.configure("2") do |config|
     kali.vm.box = "kalilinux/rolling"
     kali.vm.hostname = "kali"
 
-    kali.vm.network "private_network", ip: '192.168.56.2', name: "VirtualBox Host-Only Ethernet Adapter"
+    kali.vm.network "private_network", ip: '192.168.24.2', name: "VirtualBox Host-Only Ethernet Adapter #2"
 
     kali.vm.provider "virtualbox" do |v|
       v.name = "kali"
@@ -25,11 +25,11 @@ Vagrant.configure("2") do |config|
     win.vm.box = "rapid7/metasploitable3-win2k8"
     win.vm.hostname = "Lt-Connolys-PC"
     win.vm.communicator = "winrm"
-    win.winrm.host = "192.168.56.3"
+    win.winrm.host = "192.168.24.3"
     win.winrm.retry_limit = 60
     win.winrm.retry_delay = 10
 
-    win.vm.network "private_network", ip: '192.168.56.3', name: "VirtualBox Host-Only Ethernet Adapter"
+    win.vm.network "private_network", ip: '192.168.24.3', name: "VirtualBox Host-Only Ethernet Adapter #2"
 
     win.vm.provider "virtualbox" do |v|
       v.name = "Lt Connoly's PC"
@@ -56,11 +56,11 @@ Vagrant.configure("2") do |config|
     win.vm.box = "rapid7/metasploitable3-win2k8"
     win.vm.hostname = "Capt-Dorfners-PC"
     win.vm.communicator = "winrm"
-    win.winrm.host = "192.168.56.4"
+    win.winrm.host = "192.168.24.4"
     win.winrm.retry_limit = 60
     win.winrm.retry_delay = 10
 
-    win.vm.network "private_network", ip: '192.168.56.4', name: "VirtualBox Host-Only Ethernet Adapter"
+    win.vm.network "private_network", ip: '192.168.24.4', name: "VirtualBox Host-Only Ethernet Adapter #2"
 
     win.vm.provider "virtualbox" do |v|
       v.name = "Capt Dorfner's PC"
@@ -87,7 +87,7 @@ Vagrant.configure("2") do |config|
     monitor.vm.box = "kalilinux/rolling"
     monitor.vm.hostname = "monitor"
 
-    monitor.vm.network "private_network", ip: '192.168.56.5', name: "VirtualBox Host-Only Ethernet Adapter"
+    monitor.vm.network "private_network", ip: '192.168.24.5', name: "VirtualBox Host-Only Ethernet Adapter #2"
 
     monitor.vm.provider "virtualbox" do |v|
       v.name = "monitor"
