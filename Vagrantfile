@@ -10,9 +10,16 @@ Vagrant.configure("2") do |config|
 
     kali.vm.network "private_network", ip: '192.168.24.2', name: "VirtualBox Host-Only Ethernet Adapter #2"
 
+    kali.vm.provision "shell", run: "always", inline: <<-SHELL
+      nmcli con show "eth1-static" &>/dev/null || \
+        nmcli con add type ethernet ifname eth1 con-name "eth1-static" \
+          ipv4.addresses 192.168.24.2/24 ipv4.method manual
+      nmcli con up "eth1-static" || true
+    SHELL
+
     kali.vm.provider "virtualbox" do |v|
       v.name = "kali"
-      v.memory = 2048
+      v.memory = 4096
       v.cpus = 2
     end
 
@@ -25,6 +32,7 @@ Vagrant.configure("2") do |config|
     win.vm.box = "rapid7/metasploitable3-win2k8"
     win.vm.hostname = "Lt-Connolys-PC"
     win.vm.communicator = "winrm"
+    win.vm.boot_timeout = 600
     win.vm.graceful_halt_timeout = 120
     win.winrm.transport = :negotiate
     win.winrm.basic_auth_only = false
@@ -57,6 +65,7 @@ Vagrant.configure("2") do |config|
     win.vm.box = "rapid7/metasploitable3-win2k8"
     win.vm.hostname = "Capt-Dorfners-PC"
     win.vm.communicator = "winrm"
+    win.vm.boot_timeout = 600
     win.vm.graceful_halt_timeout = 120
     win.winrm.transport = :negotiate
     win.winrm.basic_auth_only = false
@@ -91,9 +100,16 @@ Vagrant.configure("2") do |config|
 
     monitor.vm.network "private_network", ip: '192.168.24.5', name: "VirtualBox Host-Only Ethernet Adapter #2"
 
+    monitor.vm.provision "shell", run: "always", inline: <<-SHELL
+      nmcli con show "eth1-static" &>/dev/null || \
+        nmcli con add type ethernet ifname eth1 con-name "eth1-static" \
+          ipv4.addresses 192.168.24.5/24 ipv4.method manual
+      nmcli con up "eth1-static" || true
+    SHELL
+
     monitor.vm.provider "virtualbox" do |v|
       v.name = "monitor"
-      v.memory = 2048
+      v.memory = 4096
       v.cpus = 2
     end
   end
