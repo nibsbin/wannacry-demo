@@ -25,7 +25,7 @@ Vagrant.configure("2") do |config|
     win.vm.box = "rapid7/metasploitable3-win2k8"
     win.vm.hostname = "Lt-Connolys-PC"
     win.vm.communicator = "winrm"
-    win.winrm.host = "192.168.24.3"
+    win.vm.boot_timeout = 300
     win.winrm.retry_limit = 60
     win.winrm.retry_delay = 10
 
@@ -35,7 +35,6 @@ Vagrant.configure("2") do |config|
       v.name = "Lt Connoly's PC"
       v.memory = 4096
       v.cpus = 2
-      v.customize ["modifyvm", :id, "--nic1", "intnet", "--intnet1", "isolated"]
     end
 
     # Configure Firewall to open up vulnerable services
@@ -49,14 +48,14 @@ Vagrant.configure("2") do |config|
 
     win.vm.provision :shell, inline: "C:\\startup\\install_share_autorun.bat"
     win.vm.provision :shell, inline: "C:\\startup\\setup_linux_share.bat"
-    win.vm.provision :shell, inline: "del /Q C:\\startup\\*"
+    win.vm.provision :shell, inline: "Remove-Item C:\\startup\\* -Force"
   end
 
   config.vm.define "win2k8_2" do |win|
     win.vm.box = "rapid7/metasploitable3-win2k8"
     win.vm.hostname = "Capt-Dorfners-PC"
     win.vm.communicator = "winrm"
-    win.winrm.host = "192.168.24.4"
+    win.vm.boot_timeout = 300
     win.winrm.retry_limit = 60
     win.winrm.retry_delay = 10
 
@@ -66,7 +65,6 @@ Vagrant.configure("2") do |config|
       v.name = "Capt Dorfner's PC"
       v.memory = 4096
       v.cpus = 2
-      v.customize ["modifyvm", :id, "--nic1", "intnet", "--intnet1", "isolated"]
     end
 
     # Configure Firewall to open up vulnerable services
@@ -80,7 +78,7 @@ Vagrant.configure("2") do |config|
 
     win.vm.provision :shell, inline: "C:\\startup\\install_share_autorun.bat"
     win.vm.provision :shell, inline: "C:\\startup\\setup_linux_share.bat"
-    win.vm.provision :shell, inline: "del /Q C:\\startup\\*"
+    win.vm.provision :shell, inline: "Remove-Item C:\\startup\\* -Force"
   end
 
   config.vm.define "monitor" do |monitor|
