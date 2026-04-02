@@ -25,8 +25,10 @@ Vagrant.configure("2") do |config|
     win.vm.box = "rapid7/metasploitable3-win2k8"
     win.vm.hostname = "Lt-Connolys-PC"
     win.vm.communicator = "winrm"
-    win.vm.boot_timeout = 300
-    win.winrm.retry_limit = 60
+    win.vm.graceful_halt_timeout = 120
+    win.winrm.transport = :negotiate
+    win.winrm.basic_auth_only = false
+    win.winrm.retry_limit = 90
     win.winrm.retry_delay = 10
 
     win.vm.network "private_network", ip: '192.168.24.3', name: "VirtualBox Host-Only Ethernet Adapter #2"
@@ -55,8 +57,10 @@ Vagrant.configure("2") do |config|
     win.vm.box = "rapid7/metasploitable3-win2k8"
     win.vm.hostname = "Capt-Dorfners-PC"
     win.vm.communicator = "winrm"
-    win.vm.boot_timeout = 300
-    win.winrm.retry_limit = 60
+    win.vm.graceful_halt_timeout = 120
+    win.winrm.transport = :negotiate
+    win.winrm.basic_auth_only = false
+    win.winrm.retry_limit = 90
     win.winrm.retry_delay = 10
 
     win.vm.network "private_network", ip: '192.168.24.4', name: "VirtualBox Host-Only Ethernet Adapter #2"
